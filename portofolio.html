@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin Portfolio</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #balance { font-size: 1.5em; }
+    </style>
+</head>
+<body>
+    <h1>Bitcoin Portfolio</h1>
+    <p>Address: bc1peedsk2nzru2s774u0x7c9ss45nqchp9jna0h7js34vzxx7jyfjdslrpye8</p>
+    <p id="balance">Balance: Loading...</p>
+
+    <script>
+        const address = "bc1peedsk2nzru2s774u0x7c9ss45nqchp9jna0h7js34vzxx7jyfjdslrpye8";
+        fetch(`https://blockchain.info/q/addressbalance/${address}?confirmations=6`)
+            .then(response => response.json())
+            .then(data => {
+                const balance = data / 100000000; // Convert Satoshis to BTC
+                document.getElementById("balance").innerText = `Balance: ${balance} BTC`;
+            })
+            .catch(error => console.error("Error:", error));
+    </script>
+</body>
+</html>

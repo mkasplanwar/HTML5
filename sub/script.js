@@ -1,0 +1,1 @@
+document.write("this the js code");
